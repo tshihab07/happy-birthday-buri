@@ -17,6 +17,7 @@
     { id: 'scene-quiz', name: 'Quiz', label: 'Birthday Quiz', arrival: false },
     { id: 'scene-scratch', name: 'Secret', label: 'Secret Note', arrival: false },
     { id: 'scene-finale', name: 'With love', label: 'With Love', arrival: false },
+    { id: 'scene-final-word', name: 'Final Word', label: 'Final Word', arrival: false },
   ];
 
   // DOM References
@@ -1149,9 +1150,18 @@
     });
   }
 
-  // SCENE 11: FINALE CHAPTERS SCROLL-REVEAL & REPLAY (index 10)
+  // SCENE 11 & 12: FINALE CHAPTERS SCROLL-REVEAL & FINAL WORD WISH CARD
+  const btnFinalWord = document.getElementById('btn-final-word');
   const btnReplayStory = document.getElementById('btn-replay-story');
   let finaleChapterObserver = null;
+
+  if (btnFinalWord) {
+    btnFinalWord.addEventListener('click', () => {
+      playPartyPopperSound();
+      showScene(11);
+      launchPartyPoppers();
+    });
+  }
 
   function initFinaleChapterObserver() {
     const items = Array.from(document.querySelectorAll('.story-finale-gallery-card .B6fPla_photoItem'));

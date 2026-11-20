@@ -1135,3 +1135,235 @@
 .story-finale-replay-btn {
   margin: 8px auto 0;
 }
+
+/* Scene 12: Final Word Animated Birthday Wish Card */
+#scene-final-word.WAxGxq_scene {
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0 40px;
+}
+
+.story-final-card-stage {
+  position: relative;
+  width: min(100%, 620px);
+  margin: auto;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.story-final-card-glow {
+  position: absolute;
+  inset: -28px;
+  border-radius: 42px;
+  background: radial-gradient(circle at 25% 20%, #f5c3d466, transparent 55%),
+              radial-gradient(circle at 80% 80%, #f2d28b5c, transparent 55%),
+              radial-gradient(circle at 50% 50%, #c9b2df44, transparent 65%);
+  filter: blur(22px);
+  z-index: -1;
+  animation: finalGlowBreath 4.5s ease-in-out infinite;
+}
+
+.story-final-card-sparkles {
+  position: absolute;
+  inset: -18px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.story-final-card-sparkles span {
+  position: absolute;
+  font-size: 1.15rem;
+  color: #c89143;
+  opacity: 0.75;
+  animation: finalSparkleFloat 3.4s ease-in-out infinite;
+}
+
+.story-final-card-sparkles span:nth-child(1) { top: 6%;  left: 4%;   color: #c96d8e; animation-delay: 0s; }
+.story-final-card-sparkles span:nth-child(2) { top: 12%; right: 5%;  color: #d49c48; animation-delay: -0.7s; }
+.story-final-card-sparkles span:nth-child(3) { top: 48%; left: -2%;  color: #9e82bd; animation-delay: -1.4s; }
+.story-final-card-sparkles span:nth-child(4) { top: 52%; right: -2%; color: #c96d8e; animation-delay: -2.1s; }
+.story-final-card-sparkles span:nth-child(5) { bottom: 8%; left: 7%; color: #d49c48; animation-delay: -0.9s; }
+.story-final-card-sparkles span:nth-child(6) { bottom: 6%; right: 6%;color: #7caea6; animation-delay: -1.8s; }
+
+.story-final-wish-card {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  padding: clamp(28px, 5vw, 46px) clamp(22px, 5vw, 42px);
+  border-radius: 28px;
+  background: radial-gradient(circle at 14% 12%, #fff3df, transparent 48%),
+              radial-gradient(circle at 88% 88%, #fce6ee, transparent 52%),
+              linear-gradient(155deg, #fffefb, #fff7f1);
+  border: 1.5px solid #e7c2d0;
+  box-shadow: 0 22px 60px #8f4f6422, inset 0 0 0 6px #ffffff88;
+  animation: finalCardEntrance 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.story-final-card-shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 20%, #ffffff78 50%, transparent 80%);
+  transform: translateX(-120%);
+  animation: finalCardShimmer 4.8s ease-in-out 0.8s infinite;
+}
+
+.story-final-card-crest {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #f8d79a, #d89b5a);
+  color: #fffaf5;
+  font-size: 1.4rem;
+  box-shadow: 0 8px 22px #c88d4c3d, inset 0 0 0 3px #fff4da66;
+  animation: finalCrestPop 0.8s cubic-bezier(0.22, 1.3, 0.36, 1) 0.18s both;
+}
+
+.story-final-card-eyebrow {
+  color: #a54769;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.74rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+  animation: finalTextRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+.story-final-card-heading {
+  color: #553640;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 3.8vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 auto 14px;
+  max-width: 24ch;
+  animation: finalTextRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+
+.story-final-card-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto 18px;
+  width: min(200px, 60%);
+  animation: finalTextRise 0.7s ease-out 0.42s both;
+}
+
+.story-final-card-divider::before,
+.story-final-card-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d9a7b9, transparent);
+}
+
+.story-final-card-divider i {
+  font-style: normal;
+  color: #c89143;
+  font-size: 0.9rem;
+}
+
+.story-final-card-body {
+  color: #795f68;
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 48ch;
+  margin: 0 auto 22px;
+  animation: finalTextRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.48s both;
+}
+
+.story-final-card-quote {
+  margin: 0 auto 22px;
+  padding: 18px 22px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fbe8ef, #fff6e6);
+  border: 1px solid #e6bfd0;
+  color: #8b3656;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.12rem, 2.6vw, 1.38rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.55;
+  box-shadow: 0 8px 22px #a5476912;
+  animation: finalTextRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+.story-final-card-signoff {
+  color: #a54769;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  animation: finalTextRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.74s both;
+}
+
+@keyframes finalCardEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes finalCrestPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4) rotate(-18deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes finalTextRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes finalGlowBreath {
+  0%, 100% {
+    opacity: 0.75;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes finalSparkleFloat {
+  0%, 100% {
+    opacity: 0.45;
+    transform: translateY(0) scale(0.9) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.18) rotate(12deg);
+  }
+}
+
+@keyframes finalCardShimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  45%, 100% {
+    transform: translateX(130%);
+  }
+}
