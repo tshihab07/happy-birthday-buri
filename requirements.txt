@@ -1,0 +1,9 @@
+# Core framework
+Django==5.2.1
+python-dotenv==1.0.1
+
+# Auth / security
+django-axes==6.5.1
+
+# Forms / UI helpers
+django-widget-tweaks==1.5.0
