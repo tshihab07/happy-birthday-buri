@@ -32,9 +32,10 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() in ('1', 'true', 'yes', 'on')
 
+# Include .vercel.app for Vercel deployments
 ALLOWED_HOSTS = [
     host.strip()
-    for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+    for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,.vercel.app').split(',')
     if host.strip()
 ]
 
@@ -49,16 +50,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'story',
+    # Add these if you are actively using them from your requirements.txt
+    # 'axes',
+    # 'widget_tweaks',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # <-- ADDED for Vercel static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'axes.middleware.AxesMiddleware',  # <-- Uncomment if using django-axes
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -84,10 +90,18 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# Vercel's filesystem is read-only at the root. 
+# We use /tmp for Vercel deployments so SQLite can write (e.g., for django-axes or sessions).
+# Note: /tmp is ephemeral and will reset when the server sleeps.
+if os.getenv('VERCEL'):
+    DB_NAME = '/tmp/db.sqlite3'
+else:
+    DB_NAME = BASE_DIR / os.getenv('DATABASE_NAME', 'db.sqlite3')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / os.getenv('DATABASE_NAME', 'db.sqlite3'),
+        'NAME': DB_NAME,
     }
 }
 
@@ -127,10 +141,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # <-- ADDED for Vercel collectstatic
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
     ('story/images', BASE_DIR / 'images'),
 ]
+
+# Optional but recommended for Vercel: compress static files
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -1367,3 +1367,178 @@
     transform: translateX(130%);
   }
 }
+
+/* ==========================================================================
+   Mobile & Tablet Responsive Polish
+   ========================================================================== */
+.gNq10q_quiz,
+.story-finale-gallery-card,
+#scene-final-word {
+  overflow-x: clip;
+}
+
+@media (max-width: 768px) {
+  .WAxGxq_journey {
+    padding: max(18px, env(safe-area-inset-top)) 14px max(36px, env(safe-area-inset-bottom));
+  }
+
+  .WAxGxq_scene {
+    min-height: calc(100svh - 130px);
+    padding: 14px 0 24px;
+  }
+
+  .story-topbar {
+    gap: 8px 12px;
+    margin-bottom: 6px;
+  }
+
+  .story-topbar .tyKLZW_hostPill {
+    max-width: 100%;
+    padding: 8px 12px;
+    font-size: 0.78rem;
+  }
+
+  .story-topbar .tyKLZW_progressBars {
+    gap: 4px;
+  }
+
+  .story-topbar .tyKLZW_progressBars span {
+    width: clamp(12px, 4.4vw, 18px);
+    height: 3.5px;
+  }
+
+  .story-finale-gallery-card {
+    border-radius: 22px;
+    padding: 1.25rem 1rem 1.75rem;
+  }
+
+  .story-finale-gallery-card .B6fPla_photoItem,
+  .story-finale-gallery-card .B6fPla_photoItem.B6fPla_alt {
+    text-align: center;
+    gap: 0.9rem;
+  }
+
+  .story-finale-gallery-card .B6fPla_photoCaption {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .story-finale-gallery-card .B6fPla_photoItem:not(.B6fPla_alt) .B6fPla_photoFrameShell,
+  .story-finale-gallery-card .B6fPla_photoItem.B6fPla_alt .B6fPla_photoCaption {
+    transform: translate3d(-24px, 12px, 0);
+  }
+
+  .story-finale-gallery-card .B6fPla_photoItem:not(.B6fPla_alt) .B6fPla_photoCaption,
+  .story-finale-gallery-card .B6fPla_photoItem.B6fPla_alt .B6fPla_photoFrameShell {
+    transform: translate3d(24px, 12px, 0);
+  }
+}
+
+@media (max-width: 480px) {
+  .story-countdown-ring {
+    width: 92px;
+    height: 92px;
+  }
+
+  .story-countdown-number {
+    font-size: 3rem;
+  }
+
+  ._2gkThW_arrival ._2gkThW_stage {
+    --cake-width: min(145px, 46cqw);
+    --bow-width: min(185px, 72cqw);
+    --flight-gap: clamp(84px, 16vh, 130px);
+    --bow-padding: 24px;
+    --cue-gap: 10px;
+  }
+
+  ._2gkThW_arrival ._2gkThW_cakeName {
+    font-size: 1.05rem;
+    top: 25%;
+  }
+
+  .story-candles-row {
+    gap: 4px;
+  }
+
+  .story-candles-row .tyKLZW_candleButton {
+    width: 42px;
+  }
+
+  .vUO_tq_complete {
+    margin-top: 22px;
+  }
+
+  .story-wish-card {
+    padding: 18px 16px;
+  }
+
+  .story-wish-card p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  #scene-cake .qJsu-W_artwork {
+    width: min(100%, 205px);
+  }
+
+  .story-memory-focusSlot {
+    width: 100%;
+  }
+
+  .F0xIHa_feature {
+    width: min(310px, 100%);
+  }
+
+  .WAxGxq_scratchCard {
+    min-height: 200px;
+  }
+
+  .WAxGxq_scratchCard p {
+    padding: 20px 16px;
+    font-size: 1.15rem;
+  }
+
+  .story-final-card-glow {
+    inset: -14px;
+  }
+
+  .story-final-card-sparkles {
+    inset: -6px;
+  }
+
+  .story-final-card-sparkles span:nth-child(3) {
+    left: 1%;
+  }
+
+  .story-final-card-sparkles span:nth-child(4) {
+    right: 1%;
+  }
+
+  .story-final-wish-card {
+    border-radius: 22px;
+    padding: 24px 16px;
+  }
+
+  .story-final-card-crest {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .story-final-card-body {
+    font-size: 0.94rem;
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+
+  .story-final-card-quote {
+    padding: 14px;
+    font-size: 1.05rem;
+    margin-bottom: 18px;
+  }
+
+  .story-final-card-signoff {
+    font-size: 0.96rem;
+  }
+}
