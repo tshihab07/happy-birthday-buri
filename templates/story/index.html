@@ -1,0 +1,1187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="fE4KOq_variable">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f3">
+  <meta name="color-scheme" content="light">
+  <title>{{ story.text_1_story_for }} | {{ story.recipient_name }}</title>
+  <meta name="description" content="{{ story.text_1_story_for }} — from {{ story.sender_name }} with love.">
+  <link rel="stylesheet" href="{% static 'story/css/style.css' %}">
+</head>
+
+<body>
+  <div class="page-shell">
+    <main>
+      <div id="story-journey" class="WAxGxq_journey" data-story-immersive="true" data-theme="pastel"
+        data-embedded="false" data-fullscreen="false" data-fullscreen-control="false" data-paused="true"
+        data-chapter="Gift" data-arrival="false" data-actions-layout="rail">
+        <audio id="bg-music" src="{{ story.music_url }}" loop playsinline preload="auto"></audio>
+
+        <!-- Sound Prompt Overlay -->
+        <div id="sound-prompt" class="WAxGxq_soundPrompt" role="dialog" aria-modal="true"
+          aria-labelledby="story-sound-title" aria-describedby="story-sound-description">
+          <div class="WAxGxq_soundPromptCard">
+            <span class="WAxGxq_soundPromptIcon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-volume2">
+                <path
+                  d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
+                </path>
+                <path d="M16 9a5 5 0 0 1 0 6"></path>
+                <path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path>
+              </svg>
+            </span>
+            <p class="WAxGxq_soundPromptEyebrow">A birthday song for you</p>
+            <h1 id="story-sound-title">Start this story with music?</h1>
+            <p id="story-sound-description" class="WAxGxq_soundPromptDescription">
+              {{ story.sender_name }} chose “{{ story.music_title }}” for this birthday story.
+            </p>
+            <div class="WAxGxq_soundPromptActions">
+              <button type="button" id="btn-start-with-music" class="WAxGxq_soundPromptPrimary" autofocus>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-volume2" aria-hidden="true">
+                  <path
+                    d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
+                  </path>
+                  <path d="M16 9a5 5 0 0 1 0 6"></path>
+                  <path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path>
+                </svg>
+                Start with music
+              </button>
+              <button type="button" id="btn-start-no-sound" class="WAxGxq_soundPromptSecondary">
+                Continue without sound
+              </button>
+            </div>
+            <p class="WAxGxq_soundPromptHint">You can change this later with the Music button.</p>
+          </div>
+        </div>
+
+        <!-- Floating Atmosphere (Balloons & Confetti) -->
+        <div id="story-atmosphere" class="WAxGxq_atmosphere" aria-hidden="true" data-paused="true">
+          <span class="WAxGxq_floatingBalloon"></span>
+          <span class="WAxGxq_floatingBalloon"></span>
+          <span class="WAxGxq_floatingBalloon"></span>
+          <span class="WAxGxq_floatingBalloon"></span>
+          <span class="WAxGxq_floatingBalloon"></span>
+          <span class="WAxGxq_floatingBalloon"></span>
+          <span class="WAxGxq_floatingBalloon"></span>
+          <span class="WAxGxq_floatingBalloon"></span>
+          <span class="WAxGxq_floatingBalloon"></span>
+          <span class="WAxGxq_floatingBalloon"></span>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+          <i class="WAxGxq_confettiPiece"></i>
+        </div>
+
+        <!-- Top Story Header & Progress Indicator -->
+        <div class="story-topbar">
+          <div class="tyKLZW_hostPill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+              </path>
+            </svg>
+            <span>{{ story.text_1_story_for }}</span>
+          </div>
+          <div class="tyKLZW_progress" aria-label="Story progress">
+            <span id="chapter-label" class="tyKLZW_progressLabel">Surprise Gift</span>
+            <div id="chapter-bars" class="tyKLZW_progressBars">
+              <span class="tyKLZW_progressActive" data-step="0"></span>
+              <span data-step="1"></span>
+              <span data-step="2"></span>
+              <span data-step="3"></span>
+              <span data-step="4"></span>
+              <span data-step="5"></span>
+              <span data-step="6"></span>
+              <span data-step="7"></span>
+              <span data-step="8"></span>
+              <span data-step="9"></span>
+              <span data-step="10"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 1: OPENING GIFT (TEXTS 4 & 6) -->
+        <section id="scene-gift" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Birthday surprise gift">
+          <p class="WAxGxq_eyebrow">{{ story.text_4_demo_badge }}</p>
+          <h1>A birthday surprise<br><em>wrapped just for you.</em></h1>
+          <p>From {{ story.sender_name }}, with love.</p>
+          <div class="WAxGxq_openingGift">
+            <div id="gift-reveal" class="JRrp4G_giftReveal" data-gift-reveal="ready" data-artwork-state="ready"
+              data-paused="true">
+              <button type="button" id="btn-unwrap-gift" class="JRrp4G_giftAction"
+                aria-label="Unwrap your birthday surprise" aria-busy="false" data-journey-focus="true">
+                <span class="JRrp4G_stage" aria-hidden="true" data-artwork-stage="gift">
+                  <span class="JRrp4G_halo"></span>
+                  <span class="JRrp4G_orbitStars">
+                    <i>✦</i><i>✦</i><i>✦</i><i>✦</i>
+                  </span>
+                  <img id="gift-friends-img" class="JRrp4G_friends"
+                    src="https://www.wishhappybdayto.me/story/pastel/birthday-friends.webp" alt="" width="320"
+                    height="320" decoding="async">
+                  <svg class="JRrp4G_friendsFallbackSvg" viewBox="0 0 320 320" aria-hidden="true">
+                    <circle cx="160" cy="115" r="56" fill="#fbe4ec"></circle>
+                    <path d="M120 120 Q160 65 200 120" fill="#f6c7d7"></path>
+                    <circle cx="144" cy="112" r="5" fill="#553640"></circle>
+                    <circle cx="176" cy="112" r="5" fill="#553640"></circle>
+                    <path d="M148 128 Q160 138 172 128" fill="none" stroke="#a54769" stroke-width="3"
+                      stroke-linecap="round"></path>
+                    <text x="160" y="72" text-anchor="middle" font-size="28" fill="#a54769">✦ ♥ ✦</text>
+                  </svg>
+                  <svg class="JRrp4G_shell" viewBox="0 0 300 280" aria-hidden="true" focusable="false">
+                    <defs>
+                      <linearGradient id="gift-front" x1="0" y1="0" x2="1" y2="1">
+                        <stop stop-color="#f9d6e1"></stop>
+                        <stop offset=".58" stop-color="#e9acbf"></stop>
+                        <stop offset="1" stop-color="#d487a4"></stop>
+                      </linearGradient>
+                      <linearGradient id="gift-side">
+                        <stop stop-color="#d68fa9"></stop>
+                        <stop offset="1" stop-color="#ba6d8d"></stop>
+                      </linearGradient>
+                      <linearGradient id="gift-lid" x1="0" y1="0" x2="0" y2="1">
+                        <stop stop-color="#ffe7ef"></stop>
+                        <stop offset="1" stop-color="#d88fa9"></stop>
+                      </linearGradient>
+                      <linearGradient id="gift-ribbon">
+                        <stop stop-color="#c39049"></stop>
+                        <stop offset=".46" stop-color="#ffe5a3"></stop>
+                        <stop offset=".7" stop-color="#f4cf81"></stop>
+                        <stop offset="1" stop-color="#dba960"></stop>
+                      </linearGradient>
+                    </defs>
+                    <ellipse class="JRrp4G_groundShadow" cx="149" cy="266" rx="106" ry="9" fill="#9c5f76" opacity=".13">
+                    </ellipse>
+                    <g class="JRrp4G_box">
+                      <path d="M54 150 L223 145 L223 253 Q222 261 213 262 L66 262 Q55 260 54 253 Z"
+                        fill="url(#gift-front)" stroke="#b97493" stroke-width="1.4"></path>
+                      <path d="M223 145 L247 132 L247 243 Q245 250 223 260 Z" fill="url(#gift-side)" stroke="#a96280"
+                        stroke-width="1.2"></path>
+                      <path d="M58 153 L216 151" fill="none" stroke="#ffeaf1" stroke-width="3" opacity=".75"></path>
+                      <path d="M137 149 L167 148 L167 261 L137 261 Z" fill="url(#gift-ribbon)"></path>
+                      <path d="M229 143 L236 139 L236 253 L229 256 Z" fill="#f5d491" opacity=".8"></path>
+                      <path d="M57 231 C95 242 114 240 137 235 M167 234 C185 235 202 232 221 224" fill="none"
+                        stroke="#fff2f4" stroke-width="1.5" opacity=".5"></path>
+                      <rect x="88" y="182" width="42" height="47" rx="7" fill="#fff8ed" transform="rotate(-8 110 205)"
+                        stroke="#e8c49c"></rect>
+                      <path d="M108 186 Q120 166 133 164" fill="none" stroke="#a87455" stroke-width="1.3"></path>
+                      <text x="109" y="213" text-anchor="middle" fill="#a54769" font-size="23"
+                        font-family="Georgia, serif">{{ story.monogram }}</text>
+                    </g>
+                    <g class="JRrp4G_lid">
+                      <path d="M46 134 L220 128 L251 115 L77 120 Z" fill="#f7dce6" stroke="#c58ca4" stroke-width="1.4">
+                      </path>
+                      <path d="M46 134 L220 128 L220 151 L46 156 Z" fill="url(#gift-lid)" stroke="#b97493"
+                        stroke-width="1.3"></path>
+                      <path d="M220 128 L251 115 L251 138 L220 151 Z" fill="#c5819e" stroke="#aa637f"
+                        stroke-width="1.3"></path>
+                      <path d="M135 131 L165 130 L165 153 L135 154 Z M135 131 L165 130 L197 117 L167 118 Z"
+                        fill="url(#gift-ribbon)"></path>
+                      <g class="JRrp4G_bow">
+                        <path
+                          d="M151 119 C113 86 100 104 111 117 Q130 130 151 119 M153 119 C178 82 199 93 192 108 Q179 126 153 119"
+                          fill="url(#gift-ribbon)" stroke="#c18d4c" stroke-width="1.5"></path>
+                        <path
+                          d="M143 119 Q132 135 127 158 L141 154 L149 164 Q156 135 151 122 M157 120 Q174 136 183 150 L170 151 L167 162 Q150 142 151 123"
+                          fill="#f3d18a" stroke="#c99755" stroke-width="1.2"></path>
+                        <ellipse cx="153" cy="119" rx="9" ry="7" fill="#fbe0a1" stroke="#c69453"></ellipse>
+                        <path d="M118 111 Q127 105 143 118 M162 118 Q176 98 186 102" fill="none" stroke="#fff3c9"
+                          stroke-width="2" opacity=".75"></path>
+                      </g>
+                    </g>
+                  </svg>
+                  <span class="JRrp4G_paperBurst">
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                  </span>
+                </span>
+                <strong class="JRrp4G_actionLabel">Tap to unwrap</strong>
+              </button>
+              <span id="gift-status" class="JRrp4G_status" role="status"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCENE 2: BOW & ARROW + INTRO GREETING (TEXTS 1-3) -->
+        <section id="scene-arrival" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Birthday arrival" hidden>
+          <div id="arrival-stage" class="_2gkThW_arrival" data-phase="ready" data-artwork-state="ready"
+            data-reading-settled="true" data-paused="false">
+            <div id="arrival-bow-stage" class="_2gkThW_stage">
+              <div class="_2gkThW_halo" aria-hidden="true"><i></i><i></i></div>
+              <div id="arrival-cake-target" class="_2gkThW_cake">
+                <svg viewBox="0 0 220 165" class="_2gkThW_cakeFallback" aria-hidden="true">
+                  <ellipse cx="110" cy="148" rx="88" ry="12" fill="#e6d3de"></ellipse>
+                  <path d="M40 78 L180 78 L180 132 Q180 146 110 146 Q40 146 40 132 Z" fill="#f2b8c9"></path>
+                  <path d="M40 94 Q65 110 85 95 Q110 112 135 95 Q155 110 180 94 L180 78 L40 78 Z" fill="#fff4ea"></path>
+                  <ellipse cx="110" cy="78" rx="70" ry="20" fill="#fff8f0" stroke="#e9bfd0" stroke-width="2"></ellipse>
+                  <circle cx="80" cy="72" r="5" fill="#dc8ca5"></circle>
+                  <circle cx="140" cy="72" r="5" fill="#e7bd6d"></circle>
+                  <circle cx="110" cy="64" r="5" fill="#b49ccc"></circle>
+                </svg>
+                <span id="arrival-cake-name" class="_2gkThW_cakeName" hidden>{{ story.recipient_name }}<i>Happy
+                    Birthday</i></span>
+                <span id="arrival-impact-ring" class="_2gkThW_impactRing" hidden></span>
+                <span id="arrival-burst" class="_2gkThW_burst" hidden>
+                  <i>✦</i><i>♥</i><i>✦</i><i>★</i><i>✦</i><i>♥</i><i>✦</i><i>★</i>
+                </span>
+              </div>
+
+              <div class="_2gkThW_bowDock">
+                <button type="button" id="btn-bow-shoot" class="_2gkThW_bowAction"
+                  aria-label="Pull or tap bow to send your birthday wish">
+                  <div class="_2gkThW_bowVisual">
+                    <svg class="_2gkThW_bowArtwork" viewBox="0 0 220 150" aria-hidden="true">
+                      <defs>
+                        <linearGradient id="bowWoodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stop-color="#b47b60"></stop>
+                          <stop offset="35%" stop-color="#8d5240"></stop>
+                          <stop offset="50%" stop-color="#c9956b"></stop>
+                          <stop offset="65%" stop-color="#8d5240"></stop>
+                          <stop offset="100%" stop-color="#b47b60"></stop>
+                        </linearGradient>
+                      </defs>
+                      <path class="_2gkThW_bowString" d="M22 58 Q110 88 198 58" fill="none" stroke="#c89ba9"
+                        stroke-width="2" stroke-linecap="round"></path>
+                      <path class="_2gkThW_bowLimbs" d="M22 58 C46 18 82 14 110 18 C138 14 174 18 198 58" fill="none"
+                        stroke="url(#bowWoodGrad)" stroke-width="7.5" stroke-linecap="round"></path>
+                      <path d="M96 17 Q110 15 124 17" fill="none" stroke="#a54769" stroke-width="9"
+                        stroke-linecap="round"></path>
+                      <circle cx="22" cy="58" r="4" fill="#e7bd6d"></circle>
+                      <circle cx="198" cy="58" r="4" fill="#e7bd6d"></circle>
+                    </svg>
+                    <div id="loaded-arrow" class="_2gkThW_projectile _2gkThW_loadedArrow">
+                      <svg class="_2gkThW_arrowArtwork" viewBox="0 0 36 88" aria-hidden="true">
+                        <defs>
+                          <linearGradient id="arrowTipGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#d26c8f"></stop>
+                            <stop offset="100%" stop-color="#8f3454"></stop>
+                          </linearGradient>
+                        </defs>
+                        <line x1="18" y1="80" x2="18" y2="16" stroke="#9e624d" stroke-width="2.6"
+                          stroke-linecap="round"></line>
+                        <polygon points="18,3 9,20 18,16 27,20" fill="url(#arrowTipGrad)"></polygon>
+                        <path d="M18 66 L10 77 M18 72 L10 83 M18 66 L26 77 M18 72 L26 83" stroke="#e7bd6d"
+                          stroke-width="2.4" stroke-linecap="round"></path>
+                      </svg>
+                      <span class="_2gkThW_arrowName"><i>♥</i> {{ story.nickname }}</span>
+                    </div>
+                  </div>
+                  <span class="_2gkThW_pullLabel">
+                    <span class="_2gkThW_pullDirection" data-active="true">↓</span>
+                    <span class="_2gkThW_cueCopy">
+                      <span data-active="true">Tap or pull back the bow to shoot</span>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div id="arrival-revealed" class="_2gkThW_birthdayScreen" hidden>
+              <div class="_2gkThW_balloonShower" aria-hidden="true">
+                <span><i></i></span>
+                <span><i></i></span>
+                <span><i></i></span>
+                <span><i></i></span>
+                <span><i></i></span>
+                <span><i></i></span>
+                <span><i></i></span>
+                <span><i></i></span>
+              </div>
+              <div class="_2gkThW_birthdayContent">
+                <p class="_2gkThW_birthdayEyebrow">{{ story.text_1_story_for }}</p>
+                <h1 class="_2gkThW_birthdayHeading">{{ story.text_2_happy_bday }}</h1>
+                <p class="_2gkThW_birthdayTagline">{{ story.text_4_demo_badge }}</p>
+                <p class="_2gkThW_birthdayMessage">{{ story.text_3_intro }}</p>
+                <div class="_2gkThW_continueSlot">
+                  <button type="button" id="btn-arrival-continue" class="_2gkThW_continueButton story-arrival-cta">
+                    Continue story
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCENE 3: CANDLES & BIRTHDAY BANNER (TEXT 5) -->
+        <section id="scene-candles" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Birthday candles" hidden>
+          <div class="tyKLZW_storyCakeScene">
+            <div class="tyKLZW_balloonLayer" aria-hidden="true">
+              <span class="tyKLZW_journeyBalloon"><span class="tyKLZW_balloonShape"></span></span>
+              <span class="tyKLZW_journeyBalloon"><span class="tyKLZW_balloonShape"></span></span>
+            </div>
+            <div class="tyKLZW_birthdayBanner">{{ story.text_5_banner_bday }}</div>
+            <p class="tyKLZW_eyebrow">{{ story.text_4_demo_badge }}</p>
+            <h2>Make a wish &amp; blow out the candles</h2>
+            <p id="candles-instruction" class="tyKLZW_instruction">
+              Tap each glowing candle to blow it out and send your birthday wish skyward.
+            </p>
+
+            <div class="story-candles-cake-wrap">
+              <div id="candles-row" class="story-candles-row">
+                <button type="button" class="tyKLZW_candleButton" data-candle-index="0" aria-label="Blow out candle 1">
+                  <span class="tyKLZW_paintedCandle">
+                    <span class="tyKLZW_wick"></span>
+                    <span class="tyKLZW_flame"></span>
+                    <span class="tyKLZW_smoke"><b></b><b></b></span>
+                  </span>
+                </button>
+                <button type="button" class="tyKLZW_candleButton" data-candle-index="1" aria-label="Blow out candle 2">
+                  <span class="tyKLZW_paintedCandle">
+                    <span class="tyKLZW_wick"></span>
+                    <span class="tyKLZW_flame"></span>
+                    <span class="tyKLZW_smoke"><b></b><b></b></span>
+                  </span>
+                </button>
+                <button type="button" class="tyKLZW_candleButton" data-candle-index="2" aria-label="Blow out candle 3">
+                  <span class="tyKLZW_paintedCandle">
+                    <span class="tyKLZW_wick"></span>
+                    <span class="tyKLZW_flame"></span>
+                    <span class="tyKLZW_smoke"><b></b><b></b></span>
+                  </span>
+                </button>
+                <button type="button" class="tyKLZW_candleButton" data-candle-index="3" aria-label="Blow out candle 4">
+                  <span class="tyKLZW_paintedCandle">
+                    <span class="tyKLZW_wick"></span>
+                    <span class="tyKLZW_flame"></span>
+                    <span class="tyKLZW_smoke"><b></b><b></b></span>
+                  </span>
+                </button>
+                <button type="button" class="tyKLZW_candleButton" data-candle-index="4" aria-label="Blow out candle 5">
+                  <span class="tyKLZW_paintedCandle">
+                    <span class="tyKLZW_wick"></span>
+                    <span class="tyKLZW_flame"></span>
+                    <span class="tyKLZW_smoke"><b></b><b></b></span>
+                  </span>
+                </button>
+              </div>
+              <svg class="story-candle-cake-svg" viewBox="0 0 280 180" aria-hidden="true">
+                <ellipse cx="140" cy="162" rx="115" ry="14" fill="#e6d4e0"></ellipse>
+                <path d="M44 64 L236 64 L236 142 Q236 160 140 160 Q44 160 44 142 Z" fill="#f3bfd0" stroke="#dc9cb1"
+                  stroke-width="2"></path>
+                <path d="M44 98 L236 98 L236 112 L44 112 Z" fill="#fff3e2"></path>
+                <path d="M44 76 Q74 96 98 78 Q122 98 144 78 Q168 98 192 78 Q216 96 236 78 L236 64 L44 64 Z"
+                  fill="#fffaf3"></path>
+                <ellipse cx="140" cy="64" rx="96" ry="24" fill="#fffcf8" stroke="#e9c1cf" stroke-width="2"></ellipse>
+                <circle cx="88" cy="62" r="5" fill="#dc8ca5"></circle>
+                <circle cx="140" cy="56" r="5" fill="#e7bd6d"></circle>
+                <circle cx="192" cy="62" r="5" fill="#b49ccc"></circle>
+              </svg>
+            </div>
+
+            <div class="story-candles-actions">
+              <button type="button" id="btn-blow-all-candles" class="WAxGxq_secondary">Blow out all candles</button>
+              <button type="button" id="btn-candles-continue" class="WAxGxq_memoryContinue" hidden>Continue
+                story</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCENE 4: 5 BALLOONS (TEXTS 7-14) -->
+        <section id="scene-balloons" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Reasons you are special"
+          hidden>
+          <div id="balloons-stage" class="vUO_tq_surprise" data-paused="false">
+            <p class="WAxGxq_eyebrow">{{ story.text_4_demo_badge }}</p>
+            <h2>Whispers for {{ story.nickname }}</h2>
+            <p class="vUO_tq_instruction">{{ story.text_7_balloon_prompt }}</p>
+
+            <div class="vUO_tq_balloonField">
+              <div id="balloon-buttons" class="vUO_tq_balloons">
+                {% for balloon in balloons %}
+                <button type="button" class="story-balloon-btn" data-balloon-order="{{ balloon.order }}"
+                  data-popped="false" aria-label="Pop balloon {{ balloon.order }}">
+                  <span class="vUO_tq_balloon"><i></i></span>
+                  <svg class="vUO_tq_string" viewBox="0 0 20 42" aria-hidden="true">
+                    <path d="M10 0 Q15 14 9 26 Q5 34 11 42"></path>
+                  </svg>
+                  <span class="vUO_tq_foundSeal" hidden aria-hidden="true">♥</span>
+                  <span class="vUO_tq_burst" hidden aria-hidden="true">
+                    <span class="vUO_tq_popFlash"></span>
+                    <span class="vUO_tq_popMist"></span>
+                    <i class="vUO_tq_fragment" data-piece="1"></i>
+                    <i class="vUO_tq_fragment" data-piece="2"></i>
+                    <i class="vUO_tq_fragment" data-piece="3"></i>
+                    <i class="vUO_tq_fragment" data-piece="1"></i>
+                    <i class="vUO_tq_fragment" data-piece="2"></i>
+                    <i class="vUO_tq_fragment" data-piece="3"></i>
+                    <i class="vUO_tq_fragment" data-piece="1"></i>
+                    <i class="vUO_tq_fragment" data-piece="2"></i>
+                  </span>
+                </button>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div id="balloon-reasons-list" class="vUO_tq_reasons">
+              {% for balloon in balloons %}
+              <article data-reason-order="{{ balloon.order }}" hidden>
+                <span class="vUO_tq_paperCorner" aria-hidden="true"></span>
+                <div class="vUO_tq_reasonLabel">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+                    aria-hidden="true">
+                    <path
+                      d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z">
+                    </path>
+                  </svg>
+                  <span>Whisper 0{{ balloon.order }}</span>
+                </div>
+                <p>{{ balloon.text }}</p>
+              </article>
+              {% endfor %}
+            </div>
+
+            <div id="balloons-complete" class="vUO_tq_complete" hidden>
+              <button type="button" id="btn-balloons-continue">Continue story</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCENE 5: RISING BIRTHDAY WISH CARD WITH TWO BALLOONS (BOTTOM TO MIDDLE) -->
+        <section id="scene-wishes" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Birthday wishes" hidden>
+          <div class="story-wishes-centerStage">
+            <div class="story-wishes-balloons" aria-hidden="true">
+              <span class="tyKLZW_journeyBalloon"><span class="tyKLZW_balloonShape"></span></span>
+              <span class="tyKLZW_journeyBalloon"><span class="tyKLZW_balloonShape"></span></span>
+            </div>
+
+            <article class="story-wish-card">
+              <span class="vUO_tq_paperCorner" aria-hidden="true"></span>
+              <div class="vUO_tq_reasonLabel">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z">
+                  </path>
+                </svg>
+                <span>Birthday Wish</span>
+              </div>
+              <p>{{ story.text_13_greeting }}</p>
+            </article>
+
+            <button type="button" id="btn-wishes-continue" class="WAxGxq_memoryContinue">Continue story</button>
+          </div>
+        </section>
+
+        <!-- SCENE 6: CUT THE CAKE (TEXTS 15-16 — SINGLE VIEW, ONLY CUT SLICE REMAINS) -->
+        <section id="scene-cake" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Cut the birthday cake"
+          hidden>
+          <p class="WAxGxq_eyebrow">{{ story.text_4_demo_badge }}</p>
+          <h2 class="story-cake-heading">{{ story.text_15_cut_cake }}</h2>
+          <p id="cake-cut-subtitle" class="WAxGxq_cakeInstruction">{{ story.text_16_cake_slice }}</p>
+
+          <div id="cake-cut-moment" class="qJsu-W_moment" data-cake-cut="ready" data-paused="false"
+            data-entrance-settled="true">
+            <button type="button" id="btn-cut-cake" class="qJsu-W_cakeButton" data-ready-continue="false"
+              aria-label="Cut the birthday cake">
+              <span class="qJsu-W_artwork">
+                <span class="qJsu-W_halo" aria-hidden="true"></span>
+
+                <!-- Whole Cake -->
+                <svg class="qJsu-W_wholeCake" viewBox="0 0 260 240" aria-hidden="true">
+                  <ellipse cx="130" cy="204" rx="100" ry="15" fill="#e6d3de"></ellipse>
+                  <path d="M46 110 L214 110 L214 184 Q214 200 130 200 Q46 200 46 184 Z" fill="#eeb7c8" stroke="#d594a8"
+                    stroke-width="2"></path>
+                  <path d="M46 144 L214 144 L214 157 L46 157 Z" fill="#fff2de"></path>
+                  <path d="M46 122 Q74 140 96 123 Q120 142 144 123 Q168 142 192 123 Q204 132 214 124 L214 110 L46 110 Z"
+                    fill="#fffaf3"></path>
+                  <ellipse cx="130" cy="110" rx="84" ry="24" fill="#fffcf8" stroke="#e5bccc" stroke-width="2"></ellipse>
+                  <circle cx="95" cy="106" r="6" fill="#dc8ca5"></circle>
+                  <circle cx="130" cy="100" r="6" fill="#e7bd6d"></circle>
+                  <circle cx="165" cy="106" r="6" fill="#b49ccc"></circle>
+                  <rect x="126" y="68" width="8" height="32" rx="3" fill="#d98ea7"></rect>
+                  <path d="M130 50 Q138 59 130 67 Q122 59 130 50 Z" fill="#f7bf55"></path>
+                </svg>
+
+                <!-- Left Cake Piece (hidden once sliced so only the slice remains) -->
+                <svg class="qJsu-W_mainCake" viewBox="0 0 260 240" aria-hidden="true">
+                  <ellipse cx="130" cy="204" rx="100" ry="15" fill="#e6d3de"></ellipse>
+                </svg>
+
+                <!-- Self-Contained Served Cake Slice on Plate -->
+                <svg class="qJsu-W_slice" viewBox="0 0 260 240" aria-hidden="true">
+                  <ellipse cx="130" cy="192" rx="82" ry="16" fill="#ede1ea" stroke="#d6c2d1" stroke-width="1.5">
+                  </ellipse>
+                  <ellipse cx="130" cy="190" rx="64" ry="10" fill="#fffaf7"></ellipse>
+                  <polygon points="74,116 184,96 184,174 74,184" fill="#f5c6d4" stroke="#d594a8" stroke-width="2"
+                    stroke-linejoin="round"></polygon>
+                  <polygon points="74,142 184,126 184,139 74,155" fill="#fff3e0"></polygon>
+                  <polygon points="74,162 184,148 184,159 74,173" fill="#ffe7ee"></polygon>
+                  <polygon points="74,116 132,76 184,96" fill="#fffcf8" stroke="#e5bccc" stroke-width="2"
+                    stroke-linejoin="round"></polygon>
+                  <path d="M74 116 Q96 126 116 112 Q138 122 160 104 Q174 112 184 96" fill="none" stroke="#fffaf3"
+                    stroke-width="6" stroke-linecap="round"></path>
+                  <circle cx="134" cy="90" r="8" fill="#dc8ca5"></circle>
+                  <circle cx="152" cy="96" r="4" fill="#e7bd6d"></circle>
+                  <circle cx="114" cy="100" r="3.5" fill="#b49ccc"></circle>
+                </svg>
+
+                <!-- Cut Line -->
+                <svg class="qJsu-W_cutLine" viewBox="0 0 260 240" aria-hidden="true">
+                  <path d="M148 86 L144 120 L166 138 L152 175 L156 206" fill="none" stroke="#a54769" stroke-width="3"
+                    stroke-dasharray="150"></path>
+                </svg>
+
+                <!-- Knife -->
+                <svg class="qJsu-W_knife" viewBox="0 0 260 240" aria-hidden="true">
+                  <path d="M150 42 L162 42 L156 128 L146 118 Z" fill="#e9eef4" stroke="#9aa6b4" stroke-width="1.5">
+                  </path>
+                  <rect x="150" y="14" width="12" height="30" rx="5" fill="#a54769"></rect>
+                </svg>
+
+                <span class="qJsu-W_crumbs" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i>
+                </span>
+              </span>
+              <strong id="cake-cut-btn-label">Tap to cut the cake</strong>
+            </button>
+            <span id="cake-cut-status" class="qJsu-W_status" role="status"></span>
+          </div>
+        </section>
+
+        <!-- SCENE 6: WAX-SEALED LETTER (TEXTS 17-19) -->
+        <section id="scene-letter" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Birthday letter" hidden>
+          <p class="WAxGxq_eyebrow">{{ story.text_4_demo_badge }}</p>
+          <h2>{{ story.text_18_letter_prompt }}</h2>
+          <p id="letter-hint">Tap the wax seal to open your letter.</p>
+
+          <div id="letter-reveal" class="oS0WYW_reveal" data-phase="closed" data-reading-layout-ready="true"
+            data-reading-settled="true" data-paused="false">
+            <div class="oS0WYW_envelopeStage">
+              <div class="oS0WYW_aura" aria-hidden="true"></div>
+              <button type="button" id="btn-open-envelope" class="oS0WYW_envelope"
+                aria-label="Tap the wax seal to open letter">
+                <span class="oS0WYW_back"></span>
+                <span class="oS0WYW_front"></span>
+                <span class="oS0WYW_flap"></span>
+                <span class="oS0WYW_seal">
+                  {{ story.monogram }}<i>♥</i>
+                </span>
+                <span class="oS0WYW_address">{{ story.text_17_envelope_for }}</span>
+              </button>
+
+              <article id="letter-paper" class="oS0WYW_letter" tabindex="-1">
+                <div class="oS0WYW_foldLines" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                </div>
+                <div class="oS0WYW_letterBody">
+                  <span class="oS0WYW_heart" aria-hidden="true">♥</span>
+                  <h2>{{ story.text_17_envelope_for }}</h2>
+                  <div class="oS0WYW_ink">
+                    {% for paragraph in letter_paragraphs %}
+                    <p class="letter-paragraph">
+                      {% for line in paragraph %}
+                      {% for part in line %}
+                      {% if part.bold %}<strong>{{ part.text }}</strong>{% else %}{{ part.text }}{% endif %}
+                      {% endfor %}
+                      {% if not forloop.last %}<br>{% endif %}
+                      {% endfor %}
+                    </p>
+                    {% endfor %}
+                  </div>
+                </div>
+              </article>
+            </div>
+            <button type="button" id="btn-letter-continue" class="oS0WYW_continueButton" hidden>Continue story</button>
+          </div>
+        </section>
+
+        <!-- SCENE 8: MEMORY LANE (TEXT 20 — 5 IMAGES IN PORTRAIT FOCUS BOX, RIGHT-SIDE CONTROLS, SINGLE-LINE SUBTITLE) -->
+        <section id="scene-memories" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Memory lane" hidden>
+          <p class="WAxGxq_eyebrow">{{ story.text_4_demo_badge }}</p>
+          <h2>{{ story.text_20_memory_lane }}</h2>
+          <p class="F0xIHa_hint story-memory-singleline">{{ story.text_14_continue_hint }}</p>
+
+          <div id="memory-lane" class="F0xIHa_lane" data-direction="next" data-motion-paused="false">
+            <div class="F0xIHa_stage">
+              <div class="F0xIHa_ribbonViewport" aria-hidden="true">
+                <div class="F0xIHa_ribbon">
+                  <div class="F0xIHa_ribbonGroup">
+                    {% for photo in memory_lane_photos %}
+                    <figure class="F0xIHa_ribbonCard">
+                      <img src="{{ photo.url }}" alt="Memory {{ photo.order }}">
+                      <figcaption>{{ photo.quote }}</figcaption>
+                    </figure>
+                    {% endfor %}
+                  </div>
+                  <div class="F0xIHa_ribbonGroup">
+                    {% for photo in memory_lane_photos %}
+                    <figure class="F0xIHa_ribbonCard">
+                      <img src="{{ photo.url }}" alt="Memory {{ photo.order }}">
+                      <figcaption>{{ photo.quote }}</figcaption>
+                    </figure>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+              <div class="story-memory-focusRow">
+                <div class="story-memory-focusSlot">
+                  <div class="F0xIHa_backPrints" aria-hidden="true">
+                    <div class="F0xIHa_backPrint" data-side="left">
+                      <img id="back-print-left" src="{{ memory_lane_photos.4.url }}" alt="">
+                    </div>
+                    <div class="F0xIHa_backPrint" data-side="right">
+                      <img id="back-print-right" src="{{ memory_lane_photos.1.url }}" alt="">
+                    </div>
+                  </div>
+
+                  <figure id="memory-feature" class="F0xIHa_feature">
+                    <span id="memory-counter-badge" class="F0xIHa_photoNumber">1/{{ memory_lane_photos|length }}</span>
+                    <img id="memory-feature-img" src="{{ memory_lane_photos.0.url }}"
+                      alt="Memory 1 for {{ story.recipient_name }}">
+                    <figcaption>
+                      <p id="memory-feature-quote">{{ memory_lane_photos.0.quote }}</p>
+                    </figcaption>
+                  </figure>
+                </div>
+
+                <div class="F0xIHa_controls">
+                  <div class="F0xIHa_navigation">
+                    <button type="button" id="btn-memory-prev" aria-label="Previous photo">←</button>
+                    <span id="memory-nav-counter">1 / {{ memory_lane_photos|length }}</span>
+                    <button type="button" id="btn-memory-next" aria-label="Next photo">→</button>
+                  </div>
+                  <button type="button" id="btn-memories-continue" class="WAxGxq_memoryContinue">Continue story</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCENE 8: 5 INTERACTIVE QUIZZES WITH PARTY POPPERS -->
+        <section id="scene-quiz" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Birthday quiz" hidden>
+          <p class="WAxGxq_eyebrow">{{ story.text_4_demo_badge }}</p>
+          <div id="quiz-container" class="gNq10q_quiz" data-motion-paused="false">
+            <div class="gNq10q_question">
+              <div class="gNq10q_prompt">
+                <div class="gNq10q_count">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path
+                      d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z">
+                    </path>
+                  </svg>
+                  <span id="quiz-counter">QUIZ 01 of 0{{ quizzes|length }}</span>
+                </div>
+                <h2 id="quiz-question-text">{{ quizzes.0.question }}</h2>
+              </div>
+
+              <div id="quiz-choices" class="gNq10q_choices"></div>
+
+              <div id="quiz-feedback" class="gNq10q_feedback" data-feedback="idle">
+                <span id="quiz-success-ring" class="gNq10q_successRing" hidden aria-hidden="true"></span>
+                <span id="quiz-sparkles" class="gNq10q_sparkles" hidden aria-hidden="true">
+                  <span>✦</span><span>♥</span><span>✦</span><span>★</span>
+                  <span>✦</span><span>♥</span><span>✦</span><span>★</span>
+                </span>
+                <p id="quiz-feedback-text"></p>
+              </div>
+
+              <div id="quiz-next-wrap" class="quiz-next-wrap" hidden>
+                <button type="button" id="btn-quiz-next" class="WAxGxq_memoryContinue">Next question</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- SSR Quiz Reference for Non-JS Inspection -->
+          <div class="sr-only" aria-hidden="true">
+            {% for q in quizzes %}
+            <article>
+              <h3>QUIZ 0{{ q.order }}: {{ q.question }}</h3>
+              <ul>
+                <li>{{ q.option_a }}</li>
+                <li>{{ q.option_b }}</li>
+                <li>{{ q.option_c }}</li>
+                <li>{{ q.option_d }}</li>
+              </ul>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+
+        <!-- SCENE 9: DEDICATED SCRATCH CARD VIEW (TEXT 21) -->
+        <section id="scene-scratch" class="WAxGxq_scene story-scene" tabindex="0" aria-label="Secret note" hidden>
+          <div class="WAxGxq_secretReveal story-scratch-section">
+            <p class="WAxGxq_eyebrow">{{ story.text_4_demo_badge }}</p>
+            <h2>One little secret message</h2>
+            <div id="scratch-card" class="WAxGxq_scratchCard">
+              <p id="scratch-secret-text">{{ story.text_21_scratch_msg }}</p>
+              <canvas id="scratch-canvas" aria-label="Scratch off to reveal secret message"></canvas>
+            </div>
+            <button type="button" id="btn-reveal-scratch" class="WAxGxq_secretRevealButton">
+              ✨ Tap or scratch to reveal secret message
+            </button>
+            <p id="scratch-hint" class="WAxGxq_secretInstruction">Rub the golden card above with your finger or mouse to
+              uncover {{ story.sender_name }}’s note.</p>
+            <button type="button" id="btn-scratch-continue" class="WAxGxq_memoryContinue story-scratch-continue" hidden>
+              Continue to finale
+            </button>
+          </div>
+        </section>
+
+        <!-- SCENE 10: DEDICATED FINALE THEATRE & GALLERY (TEXT 22 — IMAGES 6-16 + QUOTES 6-16, OBJECT-CONTAIN, NO DATES) -->
+        <section id="scene-finale" class="WAxGxq_scene WAxGxq_finale story-scene" tabindex="0"
+          aria-label="Birthday finale" hidden>
+          <!-- Animal Parade Theatre -->
+          <div id="finale-parade" class="k5VC-q_finale" data-paused="false" data-entrance-settled="false">
+            <div class="k5VC-q_stage">
+              <div class="k5VC-q_theatre" aria-hidden="true"><i></i><i></i></div>
+              <div class="k5VC-q_floor" aria-hidden="true"></div>
+              <div class="k5VC-q_bunting" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div class="k5VC-q_sparkles" aria-hidden="true">
+                <span>✦</span><span>✦</span><span>✦</span><span>✦</span><span>✦</span><span>✦</span>
+              </div>
+              <div class="k5VC-q_partyConfetti" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+
+              <div class="k5VC-q_parade" aria-hidden="true">
+                <!-- Animal 1: Bear -->
+                <div class="k5VC-q_animal" data-animal="bear">
+                  <svg viewBox="0 0 100 120">
+                    <ellipse class="k5VC-q_shadow" cx="50" cy="112" rx="22" ry="5" fill="#9c5f76"></ellipse>
+                    <g class="k5VC-q_dancer">
+                      <g class="k5VC-q_feet">
+                        <ellipse cx="40" cy="103" rx="8" ry="6" fill="#b77b57"></ellipse>
+                        <ellipse cx="60" cy="103" rx="8" ry="6" fill="#b77b57"></ellipse>
+                      </g>
+                      <ellipse cx="50" cy="82" rx="22" ry="23" fill="#d3966e"></ellipse>
+                      <g class="k5VC-q_arms">
+                        <ellipse cx="26" cy="76" rx="7" ry="13" transform="rotate(-25 26 76)" fill="#c4855e"></ellipse>
+                        <ellipse cx="74" cy="76" rx="7" ry="13" transform="rotate(25 74 76)" fill="#c4855e"></ellipse>
+                      </g>
+                      <g class="k5VC-q_head">
+                        <circle cx="33" cy="34" r="9" fill="#c4855e"></circle>
+                        <circle cx="67" cy="34" r="9" fill="#c4855e"></circle>
+                        <circle cx="50" cy="48" r="21" fill="#d3966e"></circle>
+                        <ellipse cx="50" cy="54" rx="10" ry="8" fill="#fbe8d6"></ellipse>
+                        <circle class="k5VC-q_eye" cx="42" cy="45" r="2.6" fill="#553640"></circle>
+                        <circle class="k5VC-q_eye" cx="58" cy="45" r="2.6" fill="#553640"></circle>
+                        <ellipse cx="50" cy="51" rx="3.5" ry="2.5" fill="#553640"></ellipse>
+                        <ellipse class="k5VC-q_mouth" cx="50" cy="58" rx="4" ry="2.5" fill="#a54769"></ellipse>
+                        <polygon points="43,28 50,8 57,28" fill="#e7bd6d"></polygon>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- Animal 2: Rabbit -->
+                <div class="k5VC-q_animal" data-animal="rabbit">
+                  <svg viewBox="0 0 100 120">
+                    <ellipse class="k5VC-q_shadow" cx="50" cy="112" rx="20" ry="5" fill="#9c5f76"></ellipse>
+                    <g class="k5VC-q_dancer">
+                      <g class="k5VC-q_feet">
+                        <ellipse cx="41" cy="104" rx="8" ry="5" fill="#f4dce5"></ellipse>
+                        <ellipse cx="59" cy="104" rx="8" ry="5" fill="#f4dce5"></ellipse>
+                      </g>
+                      <ellipse cx="50" cy="83" rx="19" ry="22" fill="#fffaf7" stroke="#e4c3cf" stroke-width="1.5">
+                      </ellipse>
+                      <g class="k5VC-q_arms">
+                        <ellipse cx="29" cy="76" rx="6" ry="12" transform="rotate(-30 29 76)" fill="#fffaf7"
+                          stroke="#e4c3cf"></ellipse>
+                        <ellipse cx="71" cy="76" rx="6" ry="12" transform="rotate(30 71 76)" fill="#fffaf7"
+                          stroke="#e4c3cf"></ellipse>
+                      </g>
+                      <g class="k5VC-q_head">
+                        <g class="k5VC-q_ears">
+                          <ellipse cx="41" cy="22" rx="6" ry="18" transform="rotate(-8 41 22)" fill="#fffaf7"
+                            stroke="#e4c3cf"></ellipse>
+                          <ellipse cx="59" cy="22" rx="6" ry="18" transform="rotate(8 59 22)" fill="#fffaf7"
+                            stroke="#e4c3cf"></ellipse>
+                          <ellipse cx="41" cy="22" rx="3" ry="12" transform="rotate(-8 41 22)" fill="#f3bfd0"></ellipse>
+                          <ellipse cx="59" cy="22" rx="3" ry="12" transform="rotate(8 59 22)" fill="#f3bfd0"></ellipse>
+                        </g>
+                        <circle cx="50" cy="50" r="19" fill="#fffaf7" stroke="#e4c3cf" stroke-width="1.5"></circle>
+                        <circle class="k5VC-q_eye" cx="43" cy="48" r="2.5" fill="#553640"></circle>
+                        <circle class="k5VC-q_eye" cx="57" cy="48" r="2.5" fill="#553640"></circle>
+                        <circle cx="38" cy="54" r="3" fill="#f7c7d6"></circle>
+                        <circle cx="62" cy="54" r="3" fill="#f7c7d6"></circle>
+                        <ellipse class="k5VC-q_mouth" cx="50" cy="56" rx="3.5" ry="2.2" fill="#a54769"></ellipse>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- Animal 3: Elephant -->
+                <div class="k5VC-q_animal" data-animal="elephant">
+                  <svg viewBox="0 0 100 120">
+                    <ellipse class="k5VC-q_shadow" cx="50" cy="112" rx="24" ry="5" fill="#9c5f76"></ellipse>
+                    <g class="k5VC-q_dancer">
+                      <g class="k5VC-q_feet">
+                        <rect x="36" y="95" width="11" height="14" rx="4" fill="#a7bfd1"></rect>
+                        <rect x="53" y="95" width="11" height="14" rx="4" fill="#a7bfd1"></rect>
+                      </g>
+                      <ellipse cx="50" cy="82" rx="23" ry="20" fill="#bcd2e2"></ellipse>
+                      <g class="k5VC-q_head">
+                        <ellipse cx="26" cy="48" rx="12" ry="16" fill="#a7bfd1"></ellipse>
+                        <ellipse cx="74" cy="48" rx="12" ry="16" fill="#a7bfd1"></ellipse>
+                        <circle cx="50" cy="48" r="20" fill="#bcd2e2"></circle>
+                        <path class="k5VC-q_trunk" d="M50 51 Q54 67 64 62" fill="none" stroke="#a7bfd1" stroke-width="7"
+                          stroke-linecap="round"></path>
+                        <circle class="k5VC-q_eye" cx="42" cy="44" r="2.6" fill="#553640"></circle>
+                        <circle class="k5VC-q_eye" cx="58" cy="44" r="2.6" fill="#553640"></circle>
+                        <polygon points="44,29 50,12 56,29" fill="#dc8ca5"></polygon>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- Animal 4: Dog -->
+                <div class="k5VC-q_animal" data-animal="dog">
+                  <svg viewBox="0 0 100 120">
+                    <ellipse class="k5VC-q_shadow" cx="50" cy="112" rx="21" ry="5" fill="#9c5f76"></ellipse>
+                    <g class="k5VC-q_dancer">
+                      <path class="k5VC-q_tail" d="M69 86 Q85 74 79 64" fill="none" stroke="#d9a56b" stroke-width="6"
+                        stroke-linecap="round"></path>
+                      <g class="k5VC-q_feet">
+                        <ellipse cx="41" cy="103" rx="7" ry="5" fill="#d9a56b"></ellipse>
+                        <ellipse cx="59" cy="103" rx="7" ry="5" fill="#d9a56b"></ellipse>
+                      </g>
+                      <ellipse cx="50" cy="84" rx="19" ry="20" fill="#efd0a5"></ellipse>
+                      <g class="k5VC-q_arms">
+                        <ellipse cx="29" cy="79" rx="6" ry="11" transform="rotate(-22 29 79)" fill="#e3bc89"></ellipse>
+                        <ellipse cx="71" cy="79" rx="6" ry="11" transform="rotate(22 71 79)" fill="#e3bc89"></ellipse>
+                      </g>
+                      <g class="k5VC-q_head">
+                        <ellipse cx="32" cy="46" rx="7" ry="14" transform="rotate(14 32 46)" fill="#c98e53"></ellipse>
+                        <ellipse cx="68" cy="46" rx="7" ry="14" transform="rotate(-14 68 46)" fill="#c98e53"></ellipse>
+                        <circle cx="50" cy="49" r="19" fill="#efd0a5"></circle>
+                        <circle class="k5VC-q_eye" cx="43" cy="46" r="2.6" fill="#553640"></circle>
+                        <circle class="k5VC-q_eye" cx="57" cy="46" r="2.6" fill="#553640"></circle>
+                        <ellipse cx="50" cy="52" rx="3.5" ry="2.4" fill="#553640"></ellipse>
+                        <ellipse class="k5VC-q_mouth" cx="50" cy="58" rx="4" ry="2.5" fill="#a54769"></ellipse>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- Animal 5: Cat -->
+                <div class="k5VC-q_animal" data-animal="cat">
+                  <svg viewBox="0 0 100 120">
+                    <ellipse class="k5VC-q_shadow" cx="50" cy="112" rx="20" ry="5" fill="#9c5f76"></ellipse>
+                    <g class="k5VC-q_dancer">
+                      <path class="k5VC-q_tail" d="M68 92 Q86 86 84 68" fill="none" stroke="#d5b8df" stroke-width="5"
+                        stroke-linecap="round"></path>
+                      <g class="k5VC-q_feet">
+                        <ellipse cx="41" cy="103" rx="7" ry="5" fill="#d5b8df"></ellipse>
+                        <ellipse cx="59" cy="103" rx="7" ry="5" fill="#d5b8df"></ellipse>
+                      </g>
+                      <ellipse cx="50" cy="84" rx="18" ry="20" fill="#e9d8f0"></ellipse>
+                      <g class="k5VC-q_arms">
+                        <ellipse cx="30" cy="78" rx="6" ry="11" transform="rotate(-20 30 78)" fill="#e9d8f0"></ellipse>
+                        <ellipse cx="70" cy="78" rx="6" ry="11" transform="rotate(20 70 78)" fill="#e9d8f0"></ellipse>
+                      </g>
+                      <g class="k5VC-q_head">
+                        <polygon points="34,39 32,20 46,32" fill="#e9d8f0"></polygon>
+                        <polygon points="66,39 68,20 54,32" fill="#e9d8f0"></polygon>
+                        <circle cx="50" cy="49" r="19" fill="#e9d8f0"></circle>
+                        <circle class="k5VC-q_eye" cx="43" cy="47" r="2.5" fill="#553640"></circle>
+                        <circle class="k5VC-q_eye" cx="57" cy="47" r="2.5" fill="#553640"></circle>
+                        <polygon points="48,51 52,51 50,54" fill="#a54769"></polygon>
+                        <ellipse class="k5VC-q_mouth" cx="50" cy="58" rx="3.5" ry="2" fill="#a54769"></ellipse>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- Animal 6: Panda -->
+                <div class="k5VC-q_animal" data-animal="panda">
+                  <svg viewBox="0 0 100 120">
+                    <ellipse class="k5VC-q_shadow" cx="50" cy="112" rx="22" ry="5" fill="#9c5f76"></ellipse>
+                    <g class="k5VC-q_dancer">
+                      <g class="k5VC-q_feet">
+                        <ellipse cx="40" cy="103" rx="8" ry="5" fill="#553640"></ellipse>
+                        <ellipse cx="60" cy="103" rx="8" ry="5" fill="#553640"></ellipse>
+                      </g>
+                      <ellipse cx="50" cy="83" rx="21" ry="21" fill="#fffaf7" stroke="#dfd0d7"></ellipse>
+                      <g class="k5VC-q_arms">
+                        <ellipse cx="27" cy="77" rx="7" ry="12" transform="rotate(-24 27 77)" fill="#553640"></ellipse>
+                        <ellipse cx="73" cy="77" rx="7" ry="12" transform="rotate(24 73 77)" fill="#553640"></ellipse>
+                      </g>
+                      <g class="k5VC-q_head">
+                        <circle cx="34" cy="35" r="8" fill="#553640"></circle>
+                        <circle cx="66" cy="35" r="8" fill="#553640"></circle>
+                        <circle cx="50" cy="49" r="20" fill="#fffaf7" stroke="#dfd0d7"></circle>
+                        <ellipse cx="42" cy="47" rx="5" ry="6" transform="rotate(-15 42 47)" fill="#553640"></ellipse>
+                        <ellipse cx="58" cy="47" rx="5" ry="6" transform="rotate(15 58 47)" fill="#553640"></ellipse>
+                        <circle class="k5VC-q_eye" cx="42" cy="47" r="2" fill="#fff"></circle>
+                        <circle class="k5VC-q_eye" cx="58" cy="47" r="2" fill="#fff"></circle>
+                        <ellipse class="k5VC-q_mouth" cx="50" cy="57" rx="4" ry="2.2" fill="#a54769"></ellipse>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Finale Presentation & Remaining 11 Images Gallery -->
+          <div class="story-finale-stage">
+            <div class="B6fPla_stage B6fPla_love story-finale-gallery-card I47G9G_presentation" data-presented="true"
+              data-motion-paused="false">
+              <div class="B6fPla_inner">
+                <header class="B6fPla_header I47G9G_header">
+                  <span class="B6fPla_badge I47G9G_badge">{{ story.text_4_demo_badge }}</span>
+                  <div class="B6fPla_titleWrap">
+                    <h1 class="B6fPla_title I47G9G_titleWrap">
+                      <span class="I47G9G_titleWord">{{ story.text_2_happy_bday }}</span>
+                    </h1>
+                    <div class="B6fPla_titleAccent" aria-hidden="true"></div>
+                  </div>
+                  <p class="B6fPla_subtitle I47G9G_subtitle">{{ story.text_22_finale_memories }}</p>
+                </header>
+
+                <div class="B6fPla_messageHero I47G9G_message">
+                  <span class="B6fPla_messageFrom">From {{ story.sender_name }} ({{ story.sender_alias }})</span>
+                  <div class="B6fPla_messageRule I47G9G_messageRule" aria-hidden="true"></div>
+                  <p class="B6fPla_messageText I47G9G_messageText">{{ story.text_13_greeting }}</p>
+                </div>
+
+                <!-- Alternating Photo Gallery (Images 6-16 + Quotes 6-16, OBJECT-CONTAIN, NO DATES) -->
+                <div class="WAxGxq_finalePhotos B6fPla_pastelGallery">
+                  <div class="B6fPla_photoScroll">
+                    {% for photo in finale_photos %}
+                    <div class="B6fPla_photoItem{% if forloop.counter|divisibleby:2 %} B6fPla_alt{% endif %}">
+                      {% if forloop.counter|divisibleby:2 %}
+                      <div class="B6fPla_photoCaption B6fPla_bounceCaption">
+                        <span class="B6fPla_photoMetaPill">Chapter {{ photo.order|stringformat:"02d" }}</span>
+                        <strong>“{{ photo.quote }}”</strong>
+                      </div>
+                      <div class="B6fPla_photoFrameShell">
+                        <div class="B6fPla_photoFrame B6fPla_wiggleCard">
+                          <img src="{{ photo.url }}" alt="Chapter {{ photo.order }} for {{ story.recipient_name }}"
+                            loading="lazy">
+                          <div class="B6fPla_photoShimmer" aria-hidden="true"></div>
+                        </div>
+                      </div>
+                      {% else %}
+                      <div class="B6fPla_photoFrameShell">
+                        <div class="B6fPla_photoFrame B6fPla_wiggleCard">
+                          <img src="{{ photo.url }}" alt="Chapter {{ photo.order }} for {{ story.recipient_name }}"
+                            loading="lazy">
+                          <div class="B6fPla_photoShimmer" aria-hidden="true"></div>
+                        </div>
+                      </div>
+                      <div class="B6fPla_photoCaption B6fPla_bounceCaption">
+                        <span class="B6fPla_photoMetaPill">Chapter {{ photo.order|stringformat:"02d" }}</span>
+                        <strong>“{{ photo.quote }}”</strong>
+                      </div>
+                      {% endif %}
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <button type="button" id="btn-replay-story" class="WAxGxq_secondary story-finale-replay-btn">
+                  ↻ Replay birthday story from the beginning
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Playback Hint (#6) -->
+        <p class="WAxGxq_playbackHint" role="status">{{ story.text_6_touch_hint }}</p>
+
+        <!-- Floating Control Bar (Pause, Music, Video without Memory Book, Share, Copy Link — NO Gift button) -->
+        <div class="WAxGxq_floatingShare" data-story-action-dock="true">
+          <div class="jCez1W_storyShare" role="group" aria-label="Story controls" data-story-actions-layout="rail">
+            <div class="fWJEua_bar fWJEua_floating fWJEua_rail" data-share-layout="rail" role="group"
+              aria-label="Share celebration">
+              <div class="fWJEua_controls" data-share-controls="true">
+                <button type="button" id="btn-pause-motion" class="fWJEua_iconButton" aria-label="Pause story"
+                  aria-pressed="false" title="Pause or resume animations">
+                  <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-pause">
+                    <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+                    <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+                  </svg>
+                  <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    hidden>
+                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                  </svg>
+                </button>
+
+                <button type="button" id="btn-music-toggle" data-music-control="true" class="fWJEua_iconButton"
+                  aria-pressed="false" aria-label="Play music" title="Toggle birthday music">
+                  <svg id="icon-music-off" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-volume-x">
+                    <path
+                      d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
+                    </path>
+                    <line x1="22" x2="16" y1="9" y2="15"></line>
+                    <line x1="16" x2="22" y1="9" y2="15"></line>
+                  </svg>
+                  <svg id="icon-music-on" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    hidden>
+                    <path
+                      d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
+                    </path>
+                    <path d="M16 9a5 5 0 0 1 0 6"></path>
+                    <path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path>
+                  </svg>
+                </button>
+
+                <button type="button" id="btn-video-dialog" class="fWJEua_iconButton fWJEua_videoButton"
+                  aria-label="Keepsake video" aria-haspopup="dialog">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-film" aria-hidden="true">
+                    <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                    <path d="M7 3v18"></path>
+                    <path d="M3 7.5h4"></path>
+                    <path d="M3 12h18"></path>
+                    <path d="M3 16.5h4"></path>
+                    <path d="M17 3v18"></path>
+                    <path d="M17 7.5h4"></path>
+                    <path d="M17 16.5h4"></path>
+                  </svg>
+                  <span>Video</span>
+                </button>
+
+                <button type="button" id="btn-share-dialog" class="fWJEua_iconButton" aria-label="Share celebration"
+                  aria-haspopup="dialog" title="Share birthday story">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-send fWJEua_shareIconMobile" aria-hidden="true">
+                    <path
+                      d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+                    </path>
+                    <path d="m21.854 2.147-10.94 10.939"></path>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-share2 fWJEua_shareIconDesktop" aria-hidden="true">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
+                    <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
+                  </svg>
+                </button>
+
+                <button type="button" id="btn-copy-link" class="fWJEua_iconButton" aria-label="Copy celebration link"
+                  title="Copy celebration link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-copy">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                  </svg>
+                </button>
+              </div>
+              <div id="floating-status" role="status" aria-live="polite" class="fWJEua_status"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Keepsake Dialog (No Memory Book option) -->
+        <dialog id="video-dialog" class="jCez1W_dialog" aria-labelledby="video-dialog-title">
+          <div class="jCez1W_dialogBody">
+            <div class="jCez1W_dialogHeading">
+              <h2 id="video-dialog-title">Keep this birthday forever</h2>
+              <button type="button" id="btn-close-video" class="jCez1W_close" aria-label="Close dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+                </svg>
+              </button>
+            </div>
+            <p class="jCez1W_description">
+              Enjoy {{ story.recipient_name }}’s animated birthday story with music anytime.
+            </p>
+            <div class="jCez1W_formats">
+              <div>
+                <button type="button" id="btn-play-keepsake-story" aria-busy="false">
+                  <span class="jCez1W_formatIcon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                      <path d="M7 3v18"></path>
+                      <path d="M3 7.5h4"></path>
+                      <path d="M3 12h18"></path>
+                      <path d="M3 16.5h4"></path>
+                      <path d="M17 3v18"></path>
+                      <path d="M17 7.5h4"></path>
+                      <path d="M17 16.5h4"></path>
+                    </svg>
+                  </span>
+                  <span>
+                    <strong>Birthday story keepsake</strong>
+                    <small>Animated moments with {{ story.music_title }}</small>
+                  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <p id="video-dialog-status" class="jCez1W_waitNote" hidden></p>
+          </div>
+        </dialog>
+
+        <!-- Share Dialog -->
+        <dialog id="share-dialog" class="jCez1W_dialog" aria-labelledby="share-dialog-title">
+          <div class="jCez1W_dialogBody">
+            <div class="jCez1W_dialogHeading">
+              <h2 id="share-dialog-title">Share {{ story.recipient_name }}’s story</h2>
+              <button type="button" id="btn-close-share" class="jCez1W_close" aria-label="Close share dialog">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+                </svg>
+              </button>
+            </div>
+            <p class="jCez1W_description">
+              Send this special birthday story made by {{ story.sender_name }}.
+            </p>
+            <div class="story-share-url-row">
+              <input id="share-url-input" type="text" readonly aria-label="Story link">
+              <button type="button" id="btn-dialog-copy" class="jCez1W_copyLink">Copy</button>
+            </div>
+          </div>
+        </dialog>
+      </div>
+    </main>
+  </div>
+
+  {{ story_data|json_script:"story-data" }}
+  <script src="{% static 'story/js/story.js' %}" defer></script>
+</body>
+
+</html>
