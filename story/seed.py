@@ -59,8 +59,8 @@ STORY_DEFAULTS = {
         'passing page into another beautiful memory.\n\n'
         'After all, the engineer may know how to build things, but you have built a home '
         'in his heart.\n\n'
-        '**With all my love,\n'
-        'Mr. Engineer**'
+        '**With all my love**,\n'
+        '**Mr. Engineer**'
     ),
     'text_20_memory_lane': 'A Portrait of You, Through Moments Frozen in Time.',
     'text_21_scratch_msg': (

@@ -20,44 +20,16 @@
         data-chapter="Gift" data-arrival="false" data-actions-layout="rail">
         <audio id="bg-music" src="{{ story.music_url }}" loop playsinline preload="auto"></audio>
 
-        <!-- Sound Prompt Overlay -->
-        <div id="sound-prompt" class="WAxGxq_soundPrompt" role="dialog" aria-modal="true"
-          aria-labelledby="story-sound-title" aria-describedby="story-sound-description">
-          <div class="WAxGxq_soundPromptCard">
-            <span class="WAxGxq_soundPromptIcon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-volume2">
-                <path
-                  d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
-                </path>
-                <path d="M16 9a5 5 0 0 1 0 6"></path>
-                <path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path>
-              </svg>
-            </span>
-            <p class="WAxGxq_soundPromptEyebrow">A birthday song for you</p>
-            <h1 id="story-sound-title">Start this story with music?</h1>
-            <p id="story-sound-description" class="WAxGxq_soundPromptDescription">
-              {{ story.sender_name }} chose “{{ story.music_title }}” for this birthday story.
-            </p>
-            <div class="WAxGxq_soundPromptActions">
-              <button type="button" id="btn-start-with-music" class="WAxGxq_soundPromptPrimary" autofocus>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="lucide lucide-volume2" aria-hidden="true">
-                  <path
-                    d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
-                  </path>
-                  <path d="M16 9a5 5 0 0 1 0 6"></path>
-                  <path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path>
-                </svg>
-                Start with music
-              </button>
-              <button type="button" id="btn-start-no-sound" class="WAxGxq_soundPromptSecondary">
-                Continue without sound
-              </button>
+        <!-- 5-Second Animated Countdown Overlay -->
+        <div id="countdown-overlay" class="WAxGxq_soundPrompt story-countdown-overlay" role="dialog" aria-modal="true"
+          aria-labelledby="story-countdown-title">
+          <div class="WAxGxq_soundPromptCard story-countdown-card">
+            <p class="WAxGxq_soundPromptEyebrow">A birthday surprise for {{ story.recipient_name }}</p>
+            <h1 id="story-countdown-title">Get ready...</h1>
+            <div class="story-countdown-ring" aria-live="polite" aria-atomic="true">
+              <span id="countdown-number" class="story-countdown-number">5</span>
             </div>
-            <p class="WAxGxq_soundPromptHint">You can change this later with the Music button.</p>
+            <p class="WAxGxq_soundPromptHint">Starting your birthday story with music</p>
           </div>
         </div>
 
@@ -299,6 +271,9 @@
                   </span>
                 </button>
               </div>
+              <div id="bow-continue-slot" class="_2gkThW_continueSlot story-bow-continue-slot" hidden>
+                <button type="button" id="btn-bow-continue" class="_2gkThW_continueButton">Continue</button>
+              </div>
             </div>
 
             <div id="arrival-revealed" class="_2gkThW_birthdayScreen" hidden>
@@ -319,7 +294,7 @@
                 <p class="_2gkThW_birthdayMessage">{{ story.text_3_intro }}</p>
                 <div class="_2gkThW_continueSlot">
                   <button type="button" id="btn-arrival-continue" class="_2gkThW_continueButton story-arrival-cta">
-                    Continue story
+                    Continue
                   </button>
                 </div>
               </div>
@@ -395,8 +370,7 @@
 
             <div class="story-candles-actions">
               <button type="button" id="btn-blow-all-candles" class="WAxGxq_secondary">Blow out all candles</button>
-              <button type="button" id="btn-candles-continue" class="WAxGxq_memoryContinue" hidden>Continue
-                story</button>
+              <button type="button" id="btn-candles-continue" class="WAxGxq_memoryContinue" hidden>Continue</button>
             </div>
           </div>
         </section>
@@ -455,7 +429,7 @@
             </div>
 
             <div id="balloons-complete" class="vUO_tq_complete" hidden>
-              <button type="button" id="btn-balloons-continue">Continue story</button>
+              <button type="button" id="btn-balloons-continue">Continue</button>
             </div>
           </div>
         </section>
@@ -482,7 +456,7 @@
               <p>{{ story.text_13_greeting }}</p>
             </article>
 
-            <button type="button" id="btn-wishes-continue" class="WAxGxq_memoryContinue">Continue story</button>
+            <button type="button" id="btn-wishes-continue" class="WAxGxq_memoryContinue">Continue</button>
           </div>
         </section>
 
@@ -605,7 +579,7 @@
                 </div>
               </article>
             </div>
-            <button type="button" id="btn-letter-continue" class="oS0WYW_continueButton" hidden>Continue story</button>
+            <button type="button" id="btn-letter-continue" class="oS0WYW_continueButton" hidden>Continue</button>
           </div>
         </section>
 
@@ -665,7 +639,7 @@
                     <span id="memory-nav-counter">1 / {{ memory_lane_photos|length }}</span>
                     <button type="button" id="btn-memory-next" aria-label="Next photo">→</button>
                   </div>
-                  <button type="button" id="btn-memories-continue" class="WAxGxq_memoryContinue">Continue story</button>
+                  <button type="button" id="btn-memories-continue" class="WAxGxq_memoryContinue">Continue</button>
                 </div>
               </div>
             </div>
@@ -960,7 +934,7 @@
                 </header>
 
                 <div class="B6fPla_messageHero I47G9G_message">
-                  <span class="B6fPla_messageFrom">From {{ story.sender_name }} ({{ story.sender_alias }})</span>
+                  <span class="B6fPla_messageFrom">From {{ story.sender_name }} the {{ story.sender_alias }}</span>
                   <div class="B6fPla_messageRule I47G9G_messageRule" aria-hidden="true"></div>
                   <p class="B6fPla_messageText I47G9G_messageText">{{ story.text_13_greeting }}</p>
                 </div>
@@ -1010,172 +984,6 @@
 
         <!-- Playback Hint (#6) -->
         <p class="WAxGxq_playbackHint" role="status">{{ story.text_6_touch_hint }}</p>
-
-        <!-- Floating Control Bar (Pause, Music, Video without Memory Book, Share, Copy Link — NO Gift button) -->
-        <div class="WAxGxq_floatingShare" data-story-action-dock="true">
-          <div class="jCez1W_storyShare" role="group" aria-label="Story controls" data-story-actions-layout="rail">
-            <div class="fWJEua_bar fWJEua_floating fWJEua_rail" data-share-layout="rail" role="group"
-              aria-label="Share celebration">
-              <div class="fWJEua_controls" data-share-controls="true">
-                <button type="button" id="btn-pause-motion" class="fWJEua_iconButton" aria-label="Pause story"
-                  aria-pressed="false" title="Pause or resume animations">
-                  <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-pause">
-                    <rect x="14" y="4" width="4" height="16" rx="1"></rect>
-                    <rect x="6" y="4" width="4" height="16" rx="1"></rect>
-                  </svg>
-                  <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    hidden>
-                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
-                  </svg>
-                </button>
-
-                <button type="button" id="btn-music-toggle" data-music-control="true" class="fWJEua_iconButton"
-                  aria-pressed="false" aria-label="Play music" title="Toggle birthday music">
-                  <svg id="icon-music-off" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-volume-x">
-                    <path
-                      d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
-                    </path>
-                    <line x1="22" x2="16" y1="9" y2="15"></line>
-                    <line x1="16" x2="22" y1="9" y2="15"></line>
-                  </svg>
-                  <svg id="icon-music-on" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    hidden>
-                    <path
-                      d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z">
-                    </path>
-                    <path d="M16 9a5 5 0 0 1 0 6"></path>
-                    <path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path>
-                  </svg>
-                </button>
-
-                <button type="button" id="btn-video-dialog" class="fWJEua_iconButton fWJEua_videoButton"
-                  aria-label="Keepsake video" aria-haspopup="dialog">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-film" aria-hidden="true">
-                    <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                    <path d="M7 3v18"></path>
-                    <path d="M3 7.5h4"></path>
-                    <path d="M3 12h18"></path>
-                    <path d="M3 16.5h4"></path>
-                    <path d="M17 3v18"></path>
-                    <path d="M17 7.5h4"></path>
-                    <path d="M17 16.5h4"></path>
-                  </svg>
-                  <span>Video</span>
-                </button>
-
-                <button type="button" id="btn-share-dialog" class="fWJEua_iconButton" aria-label="Share celebration"
-                  aria-haspopup="dialog" title="Share birthday story">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-send fWJEua_shareIconMobile" aria-hidden="true">
-                    <path
-                      d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
-                    </path>
-                    <path d="m21.854 2.147-10.94 10.939"></path>
-                  </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-share2 fWJEua_shareIconDesktop" aria-hidden="true">
-                    <circle cx="18" cy="5" r="3"></circle>
-                    <circle cx="6" cy="12" r="3"></circle>
-                    <circle cx="18" cy="19" r="3"></circle>
-                    <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
-                    <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
-                  </svg>
-                </button>
-
-                <button type="button" id="btn-copy-link" class="fWJEua_iconButton" aria-label="Copy celebration link"
-                  title="Copy celebration link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-copy">
-                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
-                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
-                  </svg>
-                </button>
-              </div>
-              <div id="floating-status" role="status" aria-live="polite" class="fWJEua_status"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Keepsake Dialog (No Memory Book option) -->
-        <dialog id="video-dialog" class="jCez1W_dialog" aria-labelledby="video-dialog-title">
-          <div class="jCez1W_dialogBody">
-            <div class="jCez1W_dialogHeading">
-              <h2 id="video-dialog-title">Keep this birthday forever</h2>
-              <button type="button" id="btn-close-video" class="jCez1W_close" aria-label="Close dialog">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 6 6 18"></path>
-                  <path d="m6 6 12 12"></path>
-                </svg>
-              </button>
-            </div>
-            <p class="jCez1W_description">
-              Enjoy {{ story.recipient_name }}’s animated birthday story with music anytime.
-            </p>
-            <div class="jCez1W_formats">
-              <div>
-                <button type="button" id="btn-play-keepsake-story" aria-busy="false">
-                  <span class="jCez1W_formatIcon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                      <path d="M7 3v18"></path>
-                      <path d="M3 7.5h4"></path>
-                      <path d="M3 12h18"></path>
-                      <path d="M3 16.5h4"></path>
-                      <path d="M17 3v18"></path>
-                      <path d="M17 7.5h4"></path>
-                      <path d="M17 16.5h4"></path>
-                    </svg>
-                  </span>
-                  <span>
-                    <strong>Birthday story keepsake</strong>
-                    <small>Animated moments with {{ story.music_title }}</small>
-                  </span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <p id="video-dialog-status" class="jCez1W_waitNote" hidden></p>
-          </div>
-        </dialog>
-
-        <!-- Share Dialog -->
-        <dialog id="share-dialog" class="jCez1W_dialog" aria-labelledby="share-dialog-title">
-          <div class="jCez1W_dialogBody">
-            <div class="jCez1W_dialogHeading">
-              <h2 id="share-dialog-title">Share {{ story.recipient_name }}’s story</h2>
-              <button type="button" id="btn-close-share" class="jCez1W_close" aria-label="Close share dialog">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 6 6 18"></path>
-                  <path d="m6 6 12 12"></path>
-                </svg>
-              </button>
-            </div>
-            <p class="jCez1W_description">
-              Send this special birthday story made by {{ story.sender_name }}.
-            </p>
-            <div class="story-share-url-row">
-              <input id="share-url-input" type="text" readonly aria-label="Story link">
-              <button type="button" id="btn-dialog-copy" class="jCez1W_copyLink">Copy</button>
-            </div>
-          </div>
-        </dialog>
       </div>
     </main>
   </div>

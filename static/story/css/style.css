@@ -46,6 +46,71 @@
   display: none !important;
 }
 
+/* 5-Second Animated Countdown Overlay */
+.story-countdown-card {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.story-countdown-ring {
+  width: 112px;
+  height: 112px;
+  margin: 10px auto 6px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, #ffe18228 0%, #ffe1820a 65%, transparent 72%);
+  border: 2px solid #ffe18299;
+  box-shadow: 0 0 32px #ffe18238, inset 0 0 18px #ffe18222;
+  animation: storyCountdownPulse 1s ease-in-out infinite;
+}
+
+.story-countdown-number {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffe182;
+  text-shadow: 0 4px 18px #ffe18260;
+  animation: storyCountdownPop 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.WAxGxq_journey[data-paused="true"] .story-countdown-ring,
+.WAxGxq_journey[data-paused="true"] .story-countdown-number {
+  animation-play-state: running !important;
+}
+
+@keyframes storyCountdownPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 24px #ffe18230, inset 0 0 14px #ffe1821c;
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 40px #ffe18255, inset 0 0 22px #ffe18230;
+  }
+}
+
+@keyframes storyCountdownPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.9;
+    transform: scale(0.96);
+  }
+}
+
 /* Sound Prompt close/transition */
 .WAxGxq_soundPrompt[hidden] {
   display: none !important;
@@ -208,6 +273,12 @@
   margin-top: 8px;
 }
 
+.story-bow-continue-slot {
+  grid-row: 4;
+  margin-top: 14px;
+  z-index: 6;
+}
+
 /* Candle Scene custom layout & interactive 5 candles */
 .tyKLZW_storyCakeScene .tyKLZW_journeyBalloon:nth-child(1) {
   --balloon-delay: 0.08s;
@@ -315,6 +386,10 @@
 
 .vUO_tq_surprise .vUO_tq_balloons {
   gap: 8px 10px;
+}
+
+.vUO_tq_complete {
+  margin-top: 28px;
 }
 
 /* Quiz Section & Quiz 03 Playful Dodge & Party Poppers */
@@ -487,6 +562,20 @@
 
 ._2gkThW_arrival ._2gkThW_bowDock {
   z-index: 5;
+}
+
+._2gkThW_arrival ._2gkThW_cakeName {
+  width: 92%;
+  left: 4%;
+  top: 26%;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  text-shadow: 0 1px 6px #fff8f3e6;
+}
+
+._2gkThW_arrival ._2gkThW_cakeName i {
+  margin-top: 3px;
+  font-size: 0.78em;
 }
 
 ._2gkThW_arrival ._2gkThW_bowVisual {
@@ -725,10 +814,20 @@
 
 #scene-cake .qJsu-W_artwork {
   width: min(100%, 230px);
+  aspect-ratio: 260 / 225;
+}
+
+#scene-cake .qJsu-W_artwork > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
 }
 
 #scene-cake .qJsu-W_cakeButton strong {
-  margin-top: 12px;
+  margin-top: 4px;
   min-height: 46px;
   padding: 10px 22px;
   font-size: 1rem;
@@ -927,6 +1026,38 @@
   font-weight: 500;
   line-height: 1.55;
   font-size: clamp(1.05rem, 2.2vw, 1.32rem);
+}
+
+/* Finale Chapters Scroll-Reveal Animation (fade-in + smooth left/right motion) */
+.story-finale-gallery-card .B6fPla_photoItem .B6fPla_photoFrameShell,
+.story-finale-gallery-card .B6fPla_photoItem .B6fPla_photoCaption {
+  opacity: 0;
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.story-finale-gallery-card .B6fPla_photoItem:not(.B6fPla_alt) .B6fPla_photoFrameShell {
+  transform: translate3d(-48px, 14px, 0);
+}
+
+.story-finale-gallery-card .B6fPla_photoItem:not(.B6fPla_alt) .B6fPla_photoCaption {
+  transform: translate3d(48px, 14px, 0);
+  transition-delay: 0.12s;
+}
+
+.story-finale-gallery-card .B6fPla_photoItem.B6fPla_alt .B6fPla_photoCaption {
+  transform: translate3d(-48px, 14px, 0);
+}
+
+.story-finale-gallery-card .B6fPla_photoItem.B6fPla_alt .B6fPla_photoFrameShell {
+  transform: translate3d(48px, 14px, 0);
+  transition-delay: 0.12s;
+}
+
+.story-finale-gallery-card .B6fPla_photoItem[data-chapter-visible="true"] .B6fPla_photoFrameShell,
+.story-finale-gallery-card .B6fPla_photoItem[data-chapter-visible="true"] .B6fPla_photoCaption {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 /* Animal Parade Theatre Variables */

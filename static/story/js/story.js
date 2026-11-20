@@ -22,11 +22,10 @@
   // DOM References
   const journey = document.getElementById('story-journey');
   const atmosphere = document.getElementById('story-atmosphere');
-  const soundPrompt = document.getElementById('sound-prompt');
+  const countdownOverlay = document.getElementById('countdown-overlay');
+  const countdownNumber = document.getElementById('countdown-number');
   const bgMusic = document.getElementById('bg-music');
 
-  const btnStartWithMusic = document.getElementById('btn-start-with-music');
-  const btnStartNoSound = document.getElementById('btn-start-no-sound');
   const btnPauseMotion = document.getElementById('btn-pause-motion');
   const iconPause = document.getElementById('icon-pause');
   const iconPlay = document.getElementById('icon-play');
@@ -171,10 +170,12 @@
   }
 
   function updateMusicUI() {
-    btnMusicToggle.setAttribute('aria-pressed', isMusicPlaying ? 'true' : 'false');
-    btnMusicToggle.setAttribute('aria-label', isMusicPlaying ? 'Pause music' : 'Play music');
-    iconMusicOn.hidden = !isMusicPlaying;
-    iconMusicOff.hidden = isMusicPlaying;
+    if (btnMusicToggle) {
+      btnMusicToggle.setAttribute('aria-pressed', isMusicPlaying ? 'true' : 'false');
+      btnMusicToggle.setAttribute('aria-label', isMusicPlaying ? 'Pause music' : 'Play music');
+    }
+    if (iconMusicOn) iconMusicOn.hidden = !isMusicPlaying;
+    if (iconMusicOff) iconMusicOff.hidden = isMusicPlaying;
   }
 
   function startMusic() {
@@ -234,10 +235,12 @@
     const pres = document.querySelector('.I47G9G_presentation');
     if (pres) pres.setAttribute('data-motion-paused', val);
 
-    btnPauseMotion.setAttribute('aria-pressed', val);
-    btnPauseMotion.setAttribute('aria-label', paused ? 'Resume story' : 'Pause story');
-    iconPause.hidden = paused;
-    iconPlay.hidden = !paused;
+    if (btnPauseMotion) {
+      btnPauseMotion.setAttribute('aria-pressed', val);
+      btnPauseMotion.setAttribute('aria-label', paused ? 'Resume story' : 'Pause story');
+    }
+    if (iconPause) iconPause.hidden = paused;
+    if (iconPlay) iconPlay.hidden = !paused;
   }
 
   function clearQuizAutoTimer() {
@@ -280,6 +283,9 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (chapter.id === 'scene-scratch') {
         window.requestAnimationFrame(() => initScratchCanvas());
+      }
+      if (chapter.id === 'scene-finale') {
+        window.requestAnimationFrame(() => initFinaleChapterObserver());
       }
     }
   }
@@ -337,25 +343,49 @@
     }, 2000);
   }
 
-  // Sound Prompt Handlers
-  function enterStory(withMusic) {
-    if (soundPrompt) soundPrompt.hidden = true;
+  // 5-Second Animated Countdown & Automatic Music Start
+  function enterStory() {
+    if (countdownOverlay) countdownOverlay.hidden = true;
     setMotionPaused(false);
     sfxEnabled = true;
-    if (withMusic) {
-      startMusic();
-    } else {
-      stopMusic();
-    }
+    startMusic();
     const focusEl = document.getElementById('btn-unwrap-gift');
     if (focusEl) focusEl.focus();
   }
 
-  if (btnStartWithMusic) {
-    btnStartWithMusic.addEventListener('click', () => enterStory(true));
+  function unlockAutoplayMusic() {
+    if (bgMusic && bgMusic.paused) {
+      bgMusic.volume = 0.55;
+      bgMusic.play().catch(() => {
+        if (isMusicPlaying) startFallbackMusicBox();
+      });
+    } else if (!isMusicPlaying) {
+      startMusic();
+    }
   }
-  if (btnStartNoSound) {
-    btnStartNoSound.addEventListener('click', () => enterStory(false));
+
+  document.addEventListener('pointerdown', unlockAutoplayMusic, { once: true });
+  document.addEventListener('keydown', unlockAutoplayMusic, { once: true });
+
+  if (countdownOverlay && countdownNumber) {
+    let remaining = 5;
+    countdownNumber.textContent = String(remaining);
+    startMusic();
+
+    const countdownInterval = window.setInterval(() => {
+      remaining -= 1;
+      if (remaining > 0) {
+        countdownNumber.textContent = String(remaining);
+        countdownNumber.style.animation = 'none';
+        void countdownNumber.offsetWidth;
+        countdownNumber.style.animation = '';
+      } else {
+        window.clearInterval(countdownInterval);
+        enterStory();
+      }
+    }, 1000);
+  } else {
+    enterStory();
   }
 
   // Floating Bar Handlers
@@ -494,6 +524,8 @@
   const arrivalCakeName = document.getElementById('arrival-cake-name');
   const arrivalImpactRing = document.getElementById('arrival-impact-ring');
   const arrivalBurst = document.getElementById('arrival-burst');
+  const bowContinueSlot = document.getElementById('bow-continue-slot');
+  const btnBowContinue = document.getElementById('btn-bow-continue');
   const btnArrivalContinue = document.getElementById('btn-arrival-continue');
 
   let arrowFired = false;
@@ -547,12 +579,20 @@
 
     arrivalTimers.push(
       window.setTimeout(() => {
-        arrivalStage.setAttribute('data-phase', 'revealed');
-        if (arrivalBowStage) arrivalBowStage.hidden = true;
-        if (arrivalRevealed) arrivalRevealed.hidden = false;
-        launchPartyPoppers();
-      }, 1650)
+        if (bowContinueSlot) bowContinueSlot.hidden = false;
+      }, 1150)
     );
+  }
+
+  if (btnBowContinue) {
+    btnBowContinue.addEventListener('click', () => {
+      if (bowContinueSlot) bowContinueSlot.hidden = true;
+      if (arrivalStage) arrivalStage.setAttribute('data-phase', 'revealed');
+      if (arrivalBowStage) arrivalBowStage.hidden = true;
+      if (arrivalRevealed) arrivalRevealed.hidden = false;
+      playChimeSound();
+      launchPartyPoppers();
+    });
   }
 
   if (btnBowShoot) {
@@ -702,8 +742,8 @@
         cakeCutMoment.setAttribute('data-cake-cut', 'cut');
         btnCutCake.disabled = false;
         btnCutCake.setAttribute('data-ready-continue', 'true');
-        btnCutCake.setAttribute('aria-label', 'Continue story');
-        if (cakeCutBtnLabel) cakeCutBtnLabel.textContent = 'Continue story →';
+        btnCutCake.setAttribute('aria-label', 'Continue');
+        if (cakeCutBtnLabel) cakeCutBtnLabel.textContent = 'Continue';
         launchPartyPoppers();
       }, 1150);
     });
@@ -902,10 +942,6 @@
           void btn.offsetHeight;
           btn.classList.add('gNq10q_wrong');
           playTone(260, 0.14, 'sine', 0.08);
-          if (quizFeedbackText) {
-            quizFeedbackText.classList.add('quiz-dodge-note');
-            quizFeedbackText.textContent = `Nice try! Only ${q.choices[2]} can be selected 💕`;
-          }
         };
         btn.addEventListener('pointerenter', triggerDodge);
         btn.addEventListener('click', triggerDodge);
@@ -984,7 +1020,7 @@
       } else {
         showScene(9);
       }
-    }, 1550);
+    }, 3000);
   }
 
   if (btnQuizNext) {
@@ -1113,8 +1149,39 @@
     });
   }
 
-  // SCENE 11: FINALE REPLAY (index 10)
+  // SCENE 11: FINALE CHAPTERS SCROLL-REVEAL & REPLAY (index 10)
   const btnReplayStory = document.getElementById('btn-replay-story');
+  let finaleChapterObserver = null;
+
+  function initFinaleChapterObserver() {
+    const items = Array.from(document.querySelectorAll('.story-finale-gallery-card .B6fPla_photoItem'));
+    if (!items.length) return;
+
+    if (finaleChapterObserver) {
+      finaleChapterObserver.disconnect();
+      finaleChapterObserver = null;
+    }
+
+    if (typeof window.IntersectionObserver !== 'function') {
+      items.forEach((item) => item.setAttribute('data-chapter-visible', 'true'));
+      return;
+    }
+
+    items.forEach((item) => item.removeAttribute('data-chapter-visible'));
+
+    finaleChapterObserver = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute('data-chapter-visible', 'true');
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -8% 0px' }
+    );
+
+    items.forEach((item) => finaleChapterObserver.observe(item));
+  }
 
   function resetAndReplayStory() {
     clearArrivalTimers();
@@ -1149,6 +1216,7 @@
     if (arrivalCakeName) arrivalCakeName.hidden = true;
     if (arrivalImpactRing) arrivalImpactRing.hidden = true;
     if (arrivalBurst) arrivalBurst.hidden = true;
+    if (bowContinueSlot) bowContinueSlot.hidden = true;
 
     // Reset Candles
     blownCandles = 0;
